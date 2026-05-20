@@ -40,19 +40,35 @@ def generar_hash_senha(senha_pura: str) -> str:
 
 def injetar_stats(nickname: str, senha_pura: str):
     senha = generar_hash_senha(senha_pura)
+    
     payload = {
         "nickname": nickname,
         "senha": senha,
-        "val": 5000,
-        "inc": 5,
-        "mul": 1,
-        "auto": 2,
-        "total": 5000,
+        "val": 999999999999,
+        "inc": 500000,
+        "mul": 1000,
+        "auto": 500000,
+        "total": 999999999999,
         "upgrades": [
-            {"id": "up1", "custo": 13, "ganho": 1, "multiplicador": 1.3}
+            {"id": "up1", "custo": 10, "ganho": 1, "multiplicador": 1.3},
+            {"id": "up2", "custo": 100, "ganho": 10, "multiplicador": 1.3},
+            {"id": "up3", "custo": 1000, "ganho": 100, "multiplicador": 1.3},
+            {"id": "up4", "custo": 10000, "ganho": 1000, "multiplicador": 1.3},
+            {"id": "up5", "custo": 100000, "ganho": 10000, "multiplicador": 1.3},
+            {"id": "up6", "custo": 1000000, "ganho": 100000, "multiplicador": 1.3}
         ],
-        "autos": [],
-        "multi": []
+        "autos": [
+            {"id": "aut1", "custo": 15, "ganho": 1, "multiplicador": 1.4},
+            {"id": "aut2", "custo": 150, "ganho": 10, "multiplicador": 1.4},
+            {"id": "aut3", "custo": 1500, "ganho": 100, "multiplicador": 1.4},
+            {"id": "aut4", "custo": 15000, "ganho": 1000, "multiplicador": 1.4},
+            {"id": "aut5", "custo": 150000, "ganho": 10000, "multiplicador": 1.4},
+            {"id": "aut6", "custo": 1500000, "ganho": 100000, "multiplicador": 1.4}
+        ],
+        "multi": [
+            {"id": "mult1", "custo": 50000, "ganho": 1, "multiplicador": 9},
+            {"id": "mult2", "custo": 2000000, "ganho": 5, "multiplicador": 15}
+        ]
     }
 
     endpoint_upsert = f"{endpoint}?on_conflict=nickname"
@@ -60,7 +76,7 @@ def injetar_stats(nickname: str, senha_pura: str):
     resposta = requests.post(endpoint_upsert, json=payload, headers=headers)
     
     if resposta.status_code in [200, 201]:
-        print("yeah we did it")
+        print("yeah we did it!")
     else:
         print(f"Erro: {resposta.text}")
 
