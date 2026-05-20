@@ -44,11 +44,12 @@ def injetar_stats(nickname: str, senha_pura: str):
     payload = {
         "nickname": nickname,
         "senha": senha,
-        "val": 999999999999,
-        "inc": 500000,
-        "mul": 1000,
-        "auto": 500000,
-        "total": 999999999999,
+        "val": 999999999999,     
+        "inc": 500000,           
+        "mul": 1000,              
+        "auto": 500000,          
+        "total": 999999999999,   
+        
         "upgrades": [
             {"id": "up1", "custo": 10, "ganho": 1, "multiplicador": 1.3},
             {"id": "up2", "custo": 100, "ganho": 10, "multiplicador": 1.3},
@@ -57,6 +58,12 @@ def injetar_stats(nickname: str, senha_pura: str):
             {"id": "up5", "custo": 100000, "ganho": 10000, "multiplicador": 1.3},
             {"id": "up6", "custo": 1000000, "ganho": 100000, "multiplicador": 1.3}
         ],
+        
+        "multi": [
+            {"id": "mult1", "custo": 50000, "ganho": 1, "multiplicador": 9},
+            {"id": "mult2", "custo": 2000000, "ganho": 5, "multiplicador": 15}
+        ],
+        
         "autos": [
             {"id": "aut1", "custo": 15, "ganho": 1, "multiplicador": 1.4},
             {"id": "aut2", "custo": 150, "ganho": 10, "multiplicador": 1.4},
@@ -64,10 +71,6 @@ def injetar_stats(nickname: str, senha_pura: str):
             {"id": "aut4", "custo": 15000, "ganho": 1000, "multiplicador": 1.4},
             {"id": "aut5", "custo": 150000, "ganho": 10000, "multiplicador": 1.4},
             {"id": "aut6", "custo": 1500000, "ganho": 100000, "multiplicador": 1.4}
-        ],
-        "multi": [
-            {"id": "mult1", "custo": 50000, "ganho": 1, "multiplicador": 9},
-            {"id": "mult2", "custo": 2000000, "ganho": 5, "multiplicador": 15}
         ]
     }
 
@@ -78,7 +81,7 @@ def injetar_stats(nickname: str, senha_pura: str):
     if resposta.status_code in [200, 201]:
         print("yeah we did it!")
     else:
-        print(f"Erro: {resposta.text}")
+        print(f"Erro ao injetar: {resposta.text}")
 
     
 def puxar_dados():
